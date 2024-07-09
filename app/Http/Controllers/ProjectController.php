@@ -20,7 +20,6 @@ class ProjectController extends Controller
         ];
 
         return view('projects.index', $data);
-        //////////////////////////////////////////////////
     }
 
     /**
@@ -36,7 +35,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        return 'ok';
     }
 
     /**
