@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -35,7 +36,15 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        return 'ok';
+        $data = $request->all();
+
+        $newProject = new Project();
+        $newProject->title = $data['titolo'];
+        $newProject->descrizione = $data['descrizione'];
+        $newProject->immagine = $data['immagine'];
+        $newProject->save();
+
+        return redirect()->route('projects.index', $newProject->id);
     }
 
     /**
