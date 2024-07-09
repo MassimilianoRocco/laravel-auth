@@ -13,7 +13,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.index');
+        $progetti = Project::all();
+
+        $data = [
+            "progetti" => $progetti
+        ];
+
+        return view('projects.index', $data);
+        //////////////////////////////////////////////////
     }
 
     /**
@@ -21,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        //////////////////////////////////////////////////
     }
 
     /**
