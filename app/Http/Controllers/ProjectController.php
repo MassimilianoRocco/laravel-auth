@@ -43,7 +43,7 @@ class ProjectController extends Controller
         $newProject->immagine = $data['immagine'];
         $newProject->save();
 
-        return redirect()->route('projects.index', $newProject->id);
+        return redirect()->route('projects.show', $newProject->id);
     }
 
     /**
@@ -51,7 +51,11 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $data = [
+            "project" => $project
+            ];
+
+        return view("projects.show", $data);
     }
 
     /**
