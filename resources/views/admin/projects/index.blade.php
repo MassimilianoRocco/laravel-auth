@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.dash')
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -10,9 +11,9 @@
                             <h5 class="card-title">{{ $progetto->titolo }}</h5>
                             <p class="card-text">{{ $progetto->descrizione }}</p>
                             <button type="button" class="btn btn-primary"><a
-                                    href="{{ route('projects.edit',$progetto->id) }}">Modifica</a></button>
+                                    href="{{ route('admin.projects.edit', $progetto->id) }}">Modifica</a></button>
 
-                            <form class="my-1" action="{{route('projects.destroy', $progetto)}}" method="POST">
+                            <form class="my-1" action="{{ route('admin.projects.destroy', $progetto) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-primary">Elimina</button>

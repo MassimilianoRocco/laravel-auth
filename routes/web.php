@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/projects', ProjectController::class);
+
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
@@ -29,6 +29,8 @@ Route::middleware(['auth'])
         //Siamo nel gruppo quindi:
         // - il percorso "/" diventa "admin/"
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
+        Route::resource('/projects', ProjectController::class);
+
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     });
 

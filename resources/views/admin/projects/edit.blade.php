@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.dash')
+
+
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -10,7 +13,7 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="POST" action="{{ route('projects.update', $progetto->id), }}">
+                <form method="POST" action="{{ route('admin.projects.update', $progetto->id), }}">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">

@@ -33,7 +33,7 @@
                         <ul class="nav flex-column">
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/">
+                                <a class="nav-link text-white" href="{{ route('admin.projects.index') }}">
                                     <i class="fa-solid fa-home-alt fa-lg fa-fw"></i> Home
                                 </a>
                             </li>
