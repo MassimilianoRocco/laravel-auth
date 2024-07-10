@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Http\Requests\UpdateProjectRequest;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request as HttpRequest;
 
 class ProjectController extends Controller
@@ -67,7 +65,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(HttpRequest $request, Project $project)
     {
         //
     }
