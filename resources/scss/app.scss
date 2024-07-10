@@ -1,1 +1,13 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+
+img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}

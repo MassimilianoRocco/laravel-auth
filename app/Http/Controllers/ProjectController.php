@@ -52,7 +52,12 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $data = [
+            "progetto" => $project
+        ];
+
+        return view("projects.edit", $data);
+
     }
 
     /**
@@ -60,7 +65,15 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+     
+        $project->titolo = $data['titolo'];
+        $project->descrizione = $data['descrizione'];
+        $project->immagine = $data['immagine'];
+        $project->save();
+
+        return redirect()->route('projects.index', $project->id);
     }
 
     /**
