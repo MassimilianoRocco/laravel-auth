@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request as HttpRequest;
 
 class ProjectController extends Controller
 {
@@ -20,7 +19,6 @@ class ProjectController extends Controller
         ];
 
         return view('projects.index', $data);
-        //////////////////////////////////////////////////
     }
 
     /**
@@ -34,9 +32,18 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(HttpRequest $request)
     {
-        //
+
+        $data = $request->all();
+
+        $newProject = new Project();
+        $newProject->titolo = $data['titolo'];
+        $newProject->descrizione = $data['descrizione'];
+        $newProject->immagine = $data['immagine'];
+        $newProject->save();
+
+        return redirect()->route('projects.show', $newProject->id);
     }
 
     /**
@@ -44,7 +51,11 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $data = [
+            "project" => $project
+            ];
+
+        return view("projects.show", $data);
     }
 
     /**
@@ -63,7 +74,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(HttpRequest $request, Project $project)
     {
         $data = $request->all();
 
