@@ -9,7 +9,7 @@
                         <h5 class="card-title">{{ $progetto->titolo }}</h5>
                         <p class="card-text">{{ $progetto->descrizione }}</p>
                         <button type="button" class="btn btn-primary"><a
-                                href="{{ route('projects.index') }}">Modifica</a></button>
+                                href="{{ route('projects.edit',$progetto->id) }}">Modifica</a></button>
                         <button type="button" class="btn btn-primary">Elimina</button>
 
                     </div>
