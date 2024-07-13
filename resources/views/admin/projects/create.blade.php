@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.adminDash')
 @section('content')
     <div class="container">
         <div class="row">
