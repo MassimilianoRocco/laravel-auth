@@ -30,6 +30,14 @@ Route::get('/index', function () {
 
     return view('index', $data);
 });
+Route::get('/show', function (Project $project) {
+    
+    $data = [
+        "project" => $project
+    ];
+    
+    return view('show', $data);
+});
 
 
 

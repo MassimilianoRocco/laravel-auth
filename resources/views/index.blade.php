@@ -10,12 +10,13 @@
 
                             <div>
                                 <p class="card-text">
-                                    <a href="{{ route('admin.projects.show', $progetto->id) }}">
+                                    <a href="{{ url('/show', $progetto)}}">
                                         <img src="{{ $progetto->immagine }}" alt="">
                                     </a>
                                 </p>
 
                                 <h5 class="card-title">{{ $progetto->titolo }}</h5>
+                                <p>Tipo: {{$progetto->getTypeName->nome}}</p>
                                 <p class="descrizone card-text overflow-auto">{{ $progetto->descrizione }}</p>
                             </div>
                         </div>
