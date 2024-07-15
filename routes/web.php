@@ -30,7 +30,7 @@ Route::get('/index', function () {
 
     return view('index', $data);
 });
-Route::get('/show', function (Project $project) {
+Route::get('/show/{project}', function (Project $project) {
     
     $data = [
         "project" => $project
