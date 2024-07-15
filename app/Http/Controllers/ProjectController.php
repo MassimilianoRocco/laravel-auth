@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request as HttpRequest;
 
 class ProjectController extends Controller
@@ -42,6 +43,10 @@ class ProjectController extends Controller
         $newProject->descrizione = $data['descrizione'];
         $newProject->immagine = $data['immagine'];
         $newProject->save();
+
+        $newType = new Type();
+        $newType->nome = $data['type_id'];
+        $newType->save();
 
         return redirect()->route('admin.projects.show', $newProject->id);
     }

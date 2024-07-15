@@ -24,6 +24,16 @@
                         <label class="form-label">Percorso immagione</label>
                         <input type="text" class="form-control" name="immagine" required>
                     </div>
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" name="type_id">
+                            <option selected>Open this select menu</option>
+                            <option value="1">Front-end</option>
+                            <option value="2">Back-end</option>
+                            <option value="3">Full-Stack</option>
+                            <option value="4">Design</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
