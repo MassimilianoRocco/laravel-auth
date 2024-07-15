@@ -35,14 +35,26 @@ class ProjectController extends Controller
      */
     public function store(HttpRequest $request)
     {
+        //recupero e valido i dati inviati con il form necessari al mio model
+        $data = $request -> validate([
+            'titolo' => 'required|min:3|max:255',
+            'descrizione' => 'required|min:3|max:65,535',
+            'immagine' => 'required|url',
+            'type_id' => 'required'
+        ]);
 
-        $data = $request->all();
+                //Senza il validate data avrebbe contenuto anche altre cose che magari non c'entrano nulla con il project che voglio creare, mentre adesso abbiamo solo campi che ci siamo assicurati siano richiesti.
 
         $newProject = new Project();
-        $newProject->titolo = $data['titolo'];
-        $newProject->descrizione = $data['descrizione'];
-        $newProject->immagine = $data['immagine'];
-        $newProject->type_id = $data['type_id'];
+        $newProject->fill($data);
+
+              //Questo metodo fill si può usare solo se lo abbiamo abilitato e si fa all'interno del Model.
+
+        // $newProject = new Project();
+        // $newProject->titolo = $data['titolo'];
+        // $newProject->descrizione = $data['descrizione'];
+        // $newProject->immagine = $data['immagine'];
+        // $newProject->type_id = $data['type_id'];
         $newProject->save();
 
         return redirect()->route('admin.projects.show', $newProject->id);

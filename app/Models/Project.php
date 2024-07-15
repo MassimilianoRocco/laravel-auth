@@ -9,10 +9,12 @@ class Project extends Model
 {
     use HasFactory;
 
+    //Così abilito l'utilizzo del metodo Fill nel controller (per lo store)
     protected $fillable = [
         'titolo',
         'descrizione',
-        'immagine'
+        'immagine',
+        'type_id'
     ];
 
     public function getTypeName()
