@@ -42,11 +42,8 @@ class ProjectController extends Controller
         $newProject->titolo = $data['titolo'];
         $newProject->descrizione = $data['descrizione'];
         $newProject->immagine = $data['immagine'];
+        $newProject->type_id = $data['type_id'];
         $newProject->save();
-
-        $newType = new Type();
-        $newType->nome = $data['type_id'];
-        $newType->save();
 
         return redirect()->route('admin.projects.show', $newProject->id);
     }
