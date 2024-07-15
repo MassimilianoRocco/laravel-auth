@@ -25,9 +25,9 @@
                         <input type="text" class="form-control" name="immagine" required>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" aria-label="Default select example" name="type_id">
-                            <option selected>Open this select menu</option>
-                            <option value="1">Front-end</option>
+                        <p>Tipo Progetto</p>
+                        <select class="form-select" aria-label="Default select example" name="type_id" required>
+                            <option value="1" selected>Front-end</option>
                             <option value="2">Back-end</option>
                             <option value="3">Full-Stack</option>
                             <option value="4">Design</option>
