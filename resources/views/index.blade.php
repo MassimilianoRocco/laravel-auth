@@ -17,6 +17,11 @@
 
                                 <h5 class="card-title">{{ $progetto->titolo }}</h5>
                                 <p>Tipo: {{$progetto->getTypeName->nome}}</p>
+                                <p>Tech: 
+                                    @foreach($progetto->technologies as $tech)
+                                        {{ $tech->name }}
+                                    @endforeach
+                                </p>
                                 <p class="descrizone card-text overflow-auto">{{ $progetto->descrizione }}</p>
                             </div>
                         </div>
