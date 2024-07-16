@@ -52,6 +52,12 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('admin.technologies.index') }}">
+                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Lista Tech
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route('admin.projects.create') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Aggiungi un Progetto
                                 </a>

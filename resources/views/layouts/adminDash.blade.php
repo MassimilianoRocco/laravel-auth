@@ -51,7 +51,10 @@
                             <a class="nav-link" href="{{ route('admin.admin_welcome') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.projects.index') }}">{{ __('Project list') }}</a>
+                            <a class="nav-link" href="{{ route('admin.projects.index') }}">{{ __('Projects list') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.technologies.index') }}">{{ __('Tech list') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.projects.create') }}">{{ __('Add project') }}</a>

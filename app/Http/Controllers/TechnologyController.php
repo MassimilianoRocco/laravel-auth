@@ -12,7 +12,13 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        return "Questa è la index di technology";
+        $techs = Technology::all();
+
+        $data = [
+            "techs" => $techs
+        ];
+
+        return view('admin.technologies.index', $data);
     }
 
     /**
@@ -36,7 +42,11 @@ class TechnologyController extends Controller
      */
     public function show(Technology $technology)
     {
-        return "Questa è la show di technology $technology->id che si chiama $technology->name";
+        $data = [
+            "tech" => $technology
+        ];
+
+        return view("admin.technologies.show", $data);
     }
 
     /**
