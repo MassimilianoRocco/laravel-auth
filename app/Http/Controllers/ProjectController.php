@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Storage;
@@ -29,8 +30,14 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create')->with('message', 'Project created');
-        // da passare anche technologies per averle nella select della create
+
+        $techs = Technology::all();
+        $data = [
+            "techs" => $techs
+        ];
+
+        return view('admin.projects.create', $data)->with('message', 'Project created');
+        // da passare anche technologies per averle nelle checkbox del create
     }
 
     /**
@@ -43,7 +50,8 @@ class ProjectController extends Controller
             'titolo' => 'required|min:3|max:255',
             'descrizione' => 'required|min:3|max:65,535',
             'immagine' => 'required|image',
-            'type_id' => 'required'
+            'type_id' => 'required',
+            'techs' => 'exists:technologies,id',
         ]);
 
                 //Senza il validate data avrebbe contenuto anche altre cose che magari non c'entrano nulla con il project che voglio creare, mentre adesso abbiamo solo campi che ci siamo assicurati siano richiesti.
@@ -68,6 +76,10 @@ class ProjectController extends Controller
         // $newProject->immagine = $data['immagine'];
         // $newProject->type_id = $data['type_id'];
         $newProject->save();
+
+        if ($request->has('techs')) {
+            $newProject->technologies()->attach($request->techs);
+        }
 
         return redirect()->route('admin.projects.show', $newProject->id);
     }

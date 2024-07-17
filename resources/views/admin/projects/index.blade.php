@@ -24,7 +24,7 @@
                                 <p>Tipo: {{$progetto->getTypeName->nome}}</p>
                                 <p>Tech: 
                                     @foreach($progetto->technologies as $tech)
-                                        {{ $tech->name }}
+                                        {{ $tech->name }} -
                                     @endforeach
                                 </p>
                                 <p class="descrizone card-text overflow-auto">{{ $progetto->descrizione }}</p>
