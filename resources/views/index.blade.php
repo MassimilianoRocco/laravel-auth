@@ -11,7 +11,11 @@
                             <div>
                                 <p class="card-text">
                                     <a href="{{ url('/show', $progetto)}}">
+                                    @if (Str::startsWith($progetto->immagine, 'http'))
                                         <img src="{{ $progetto->immagine }}" alt="">
+                                    @else
+                                        <img src="{{ asset('storage/' . $progetto->immagine) }}" alt="">
+                                    @endif
                                     </a>
                                 </p>
 

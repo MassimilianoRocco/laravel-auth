@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -27,7 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        return view('admin.projects.create')->with('message', 'Project created');
+        // da passare anche technologies per averle nella select della create
     }
 
     /**
@@ -39,11 +42,20 @@ class ProjectController extends Controller
         $data = $request -> validate([
             'titolo' => 'required|min:3|max:255',
             'descrizione' => 'required|min:3|max:65,535',
-            'immagine' => 'required|url',
+            'immagine' => 'required|image',
             'type_id' => 'required'
         ]);
 
                 //Senza il validate data avrebbe contenuto anche altre cose che magari non c'entrano nulla con il project che voglio creare, mentre adesso abbiamo solo campi che ci siamo assicurati siano richiesti.
+
+
+        if ($request->has('immagine')) {
+            // save the image
+
+            $image_path = Storage::put('uploads', $request->immagine);
+            $data['immagine'] = $image_path;
+            //dd($image_path, $val_data);
+        }
 
         $newProject = new Project();
         $newProject->fill($data);
@@ -106,6 +118,12 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        if ($project->immagine && !Str::start($project->immagine, 'http')) {
+            // not null and not starting with http
+            Storage::delete($project->immagine);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');

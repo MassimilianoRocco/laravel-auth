@@ -11,7 +11,12 @@
                             <div>
                                 <p class="card-text">
                                     <a href="{{ route('admin.projects.show', $progetto->id) }}">
-                                        <img src="{{ $progetto->immagine }}" alt="">
+
+                                        @if (Str::startsWith($progetto->immagine, 'http'))
+                                            <img src="{{ $progetto->immagine }}" alt="">
+                                        @else
+                                        <img src="{{ asset('storage/' . $progetto->immagine) }}" alt="">
+                                        @endif
                                     </a>
                                 </p>
 

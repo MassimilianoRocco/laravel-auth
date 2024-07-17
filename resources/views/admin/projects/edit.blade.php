@@ -18,7 +18,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Titolo</label>
-                        <input type="text" class="form-control" name="titolo" value="{{$progetto->titolo}}" required>
+                        <input type="text" class="form-control" name="titolo" value="{{old('titolo',$progetto->titolo)}}" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Descrizione</label>

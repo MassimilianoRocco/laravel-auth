@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="POST" action="{{ route('admin.projects.store') }}">
+                <form method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Titolo</label>
@@ -38,13 +38,24 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label class="form-label">Percorso immagione</label>
                         <input type="text" class="form-control" name="immagine" required>
                         @error("immagine")
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                    </div> --}}
+
+                    <div class="mb-3">
+                        <label for="immagine" class="form-label">Choose file</label>
+                        <input type="file" class="form-control" name="immagine" id="immagine" placeholder="" aria-describedby="coverImageHelper" />
+                        <div id="immagineHelper" class="form-text">Upload an image for the curret project</div>
+                        @error('immagine')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
+
                     <div class="mb-3">
                         <p>Tipo Progetto</p>
                         <select class="form-select" aria-label="Default select example" name="type_id" required>
