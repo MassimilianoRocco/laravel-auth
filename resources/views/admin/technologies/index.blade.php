@@ -11,7 +11,7 @@
                             <div>
                                 <p class="card-text text-dark">
                                     <a href="{{ route('admin.technologies.show', $tech->id) }}">
-                                        <i class="{{ $tech->icon }} text-dark">Non capisco perchè non spunta l'icon</i>
+                                        <i class="{{ $tech->icon }}" style="color: #FFD43B;"></i>
                                     </a>
                                 </p>
 
