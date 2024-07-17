@@ -9,7 +9,7 @@
             </div>
             <div class="col-4">
                 @if (Str::startsWith($project->immagine, 'http'))
-                <img src="{{ $progetto->immagine }}" alt="">
+                <img src="{{ $project->immagine }}" alt="">
             @else
                 <img src="{{ asset('storage/' . $project->immagine) }}" alt="">
             @endif
