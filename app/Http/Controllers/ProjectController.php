@@ -52,7 +52,7 @@ class ProjectController extends Controller
         if ($request->has('immagine')) {
             // save the image
 
-            $image_path = Storage::put('uploads', $request->immagine);
+            $image_path = Storage::disk("public")->put('uploads', $request->immagine);
             $data['immagine'] = $image_path;
             //dd($image_path, $val_data);
         }
@@ -119,10 +119,8 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
 
-        if ($project->immagine && !Str::start($project->immagine, 'http')) {
-            // not null and not starting with http
-            Storage::delete($project->immagine);
-        }
+        
+        Storage::disk("public")->delete($project->immagine);
 
         $project->delete();
 
