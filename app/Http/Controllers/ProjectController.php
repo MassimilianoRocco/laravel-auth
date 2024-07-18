@@ -16,13 +16,17 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $progetti = Project::all();
+        $progetti = Project::orderByDesc('id')->paginate()->all();
 
         $data = [
             "progetti" => $progetti
         ];
-
+        
         return view('admin.projects.index', $data);
+
+        // Oppure:
+        // $progetti = Project::orderByDesc('id')->paginate();
+        // return view('admin.projects.index', compact('progetti'));
     }
 
     /**
