@@ -13,16 +13,22 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="POST" action="{{ route('admin.projects.update', $progetto->id) }}">
+                <form method="POST" action="{{ route('admin.projects.update', $progetto->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Titolo</label>
                         <input type="text" class="form-control" name="titolo" value="{{old('titolo',$progetto->titolo)}}" required>
+                        @error('titolo')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Descrizione</label>
-                        <input type="text" class="form-control" name="descrizione" value="{{ $progetto->descrizione }}" required>
+                        <input type="text" class="form-control" name="descrizione" value="{{old('descrizione', $progetto->descrizione) }}" required>
+                        @error('descrizione')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">

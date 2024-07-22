@@ -119,19 +119,16 @@ class ProjectController extends Controller
     {
         // $data = $request->all();
 
-
         // $project->titolo = $data['titolo'];
         // $project->descrizione = $data['descrizione'];
         // $project->immagine = $data['immagine'];
         // $project->type_id = $data['type_id'];
         // $project->save();
 
-        // AAAAAAAAAAA  TO BE FIXED AAAAAAAAAA
-
         $data = $request -> validate([
             'titolo' => 'required|min:3|max:255',
-            'descrizione' => 'required|min:3|max:65,535',
-            'immagine' => 'nullable|image',
+            'descrizione' => 'required|min:3|max:65535',
+            'immagine' => 'nullable|file',
             'type_id' => 'required',
             'techs' => 'exists:technologies,id',
         ]);
@@ -142,7 +139,7 @@ class ProjectController extends Controller
             Storage::disk("public")->delete($project->immagine);
 
             // save the image
-            $image_path = Storage::disk("public")->put('uploads', $request->immagine);
+            $image_path = Storage::disk("public")->put('uploads', $data['immagine']);
             $data['immagine'] = $image_path;
             //dd($image_path, $val_data);
         }
