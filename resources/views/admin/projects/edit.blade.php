@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="POST" action="{{ route('admin.projects.update', $progetto->id), }}">
+                <form method="POST" action="{{ route('admin.projects.update', $progetto->id) }}">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">
@@ -24,10 +24,17 @@
                         <label class="form-label">Descrizione</label>
                         <input type="text" class="form-control" name="descrizione" value="{{ $progetto->descrizione }}" required>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Percorso immagione</label>
-                        <input type="text" class="form-control" name="immagine" value="{{$progetto->immagine}}" required>
+                        <label for="immagine" class="form-label">Choose file</label>
+                        <input type="file" class="form-control" name="immagine" id="immagine" placeholder="" aria-describedby="coverImageHelper" />
+                        <div id="immagineHelper" class="form-text">Upload a new image for the curret project</div>
+                        @error('immagine')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
+
                     <div class="mb-3">
                         <p>Tipo Progetto</p>
                         <select class="form-select" aria-label="Default select example" name="type_id" required>

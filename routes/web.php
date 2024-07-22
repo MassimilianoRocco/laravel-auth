@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController; //<---- Import del controlle
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TechnologyController;
 use App\Models\Project;
+use App\Models\Technology;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
+Route::get('/proj_index', function () {
     
     $progetti = Project::all();
 
@@ -29,7 +30,7 @@ Route::get('/index', function () {
         "progetti" => $progetti
     ];
 
-    return view('index', $data);
+    return view('projects', $data);
 });
 Route::get('/show/{project}', function (Project $project) {
     
@@ -38,6 +39,18 @@ Route::get('/show/{project}', function (Project $project) {
     ];
     
     return view('show', $data);
+});
+
+
+Route::get('/tech_index', function () {
+    
+    $techs = Technology::all();
+
+    $data = [
+        "techs" => $techs
+    ];
+
+    return view('technologies', $data);
 });
 
 
