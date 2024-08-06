@@ -54,12 +54,35 @@ Route::get('/tech_index', function () {
 });
 
 
-
 // Route::resource('/projects', ProjectController::class)->only([
 //     'index', 'show'
 // ]);
 
 // Auth::check() da usare nelle funzioni qui o in quelle dei controller per restituire magari viste diverse in base all'autenticazione o meno dell'utente. Ovviamente ha poco senso qui che abbiamo il middleware (?)
+
+
+// ESEMPIO PER CONTROLLARE I DATI MAIL USANDO CLASSE NON MARKDOWN
+// Route::get('/mailable', function(){
+//     $lead = [
+//         'name' => 'Max',
+//         'email'=> 'max@example.com', 
+//         'message'=>'Lorem Ipsum dolor'
+//     ];
+
+//     return new App\Mail\NewLeadMessage($lead);
+// });
+
+// ESEMPIO PER CONTROLLARE I DATI MAIL USANDO CLASSE MARKDOWN
+Route::get('/mailable', function(){
+    $lead = [
+        'name' => 'Max',
+        'email'=> 'max@example.com', 
+        'message'=>'Lorem Ipsum dolor'
+    ];
+
+    return new App\Mail\NewLeadMessageMarkdown($lead);
+});
+
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
