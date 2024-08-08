@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TechnologyController;
+use App\Models\Lead;
 use App\Models\Project;
 use App\Models\Technology;
 
@@ -61,6 +62,7 @@ Route::get('/tech_index', function () {
 // Auth::check() da usare nelle funzioni qui o in quelle dei controller per restituire magari viste diverse in base all'autenticazione o meno dell'utente. Ovviamente ha poco senso qui che abbiamo il middleware (?)
 
 
+// _______________________________________________________________________________________________________________________________________________________
 // ESEMPIO PER CONTROLLARE I DATI MAIL USANDO CLASSE NON MARKDOWN
 // Route::get('/mailable', function(){
 //     $lead = [
@@ -72,17 +74,19 @@ Route::get('/tech_index', function () {
 //     return new App\Mail\NewLeadMessage($lead);
 // });
 
-// ESEMPIO PER CONTROLLARE I DATI MAIL USANDO CLASSE MARKDOWN
-Route::get('/mailable', function(){
-    $lead = [
-        'name' => 'Max',
-        'email'=> 'max@example.com', 
-        'message'=>'Lorem Ipsum dolor'
-    ];
+// ESEMPIO PER CONTROLLARE I DATI MAIL USANDO CLASSE MARKDOWN   --- Va commentata a fine sviluppo dato che poi un qualsiasi utente potrebbe visitare questo endpoint e vedere l'anteprima delle nostre email, come apparirebbero.
+// Route::get('/mailable', function(){
+//     // $lead = [
+//     //     'name' => 'Max',
+//     //     'email'=> 'max@example.com', 
+//     //     'message'=>'Lorem Ipsum dolor'
+//     // ];
 
-    return new App\Mail\NewLeadMessageMarkdown($lead);
-});
+//     $lead = Lead::first();
 
+//     return new App\Mail\NewLeadMessageMarkdown($lead);
+// });
+//____________________________________________________________________________________________________________________________________________________________
 
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
